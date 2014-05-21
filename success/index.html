@@ -1,0 +1,31 @@
+<html>
+<head>
+<meta charset="UTF-8">
+</head>
+<body>
+    <div id="greeting-english" style="display:none;">
+        <p>Hi<span class="subscriber-name"></span>,</p>
+        <p>Thanks for signing up!</p>
+    </div>
+    <div id="greeting-spanish" style="display:none;">
+        <p>Hola<span class="subscriber-name"></span>,</p>
+        <p>Gracias por suscribirse!</p>
+    </div>
+    <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript">
+    $(function () {
+        var nameMatch = location.search.match(/name=([^&]+)/),
+            languageMatch = location.search.match(/lang=([^&]+)/),
+            language = "english";
+
+        if (nameMatch && nameMatch[1].length > 0) {
+            $(".subscriber-name").text(' ' + nameMatch[1]);
+        }
+        if (languageMatch && languageMatch[1].length > 0) {
+            language = languageMatch[1].toLowerCase();
+        }
+        $("#greeting-" + language).show();
+    });
+    </script>
+</body>
+</html>
